@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LibraryManagement implements Library {
 
@@ -117,13 +118,21 @@ public class LibraryManagement implements Library {
     }
 
     @Override
-    public List<Book> getAvailableBooks() {
-        return Collections.emptyList();
+    public List<String> getAvailableBooks() {
+
+        List<String> availableBooks = new ArrayList<>();
+        for (Book book : books.values()) {
+            availableBooks.add(book.getNameOfBook());
+        }
+        return availableBooks;
     }
 
     @Override
     public List<Book> getBorrowedBooks() {
-        return Collections.emptyList();
+
+        return books.values().stream()
+                .filter(Book::isBookAvailable)
+                .collect(Collectors.toList());
     }
 
 

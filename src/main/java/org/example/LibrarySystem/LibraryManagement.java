@@ -8,12 +8,34 @@ import java.util.stream.Collectors;
 
 public class LibraryManagement implements Library {
 
+    private String libraryName;
+    private String libraryAddress;
     private Map<String , Book> books;
     private Map<String, Patron> patrons;
 
-    public LibraryManagement() {
+
+
+    public LibraryManagement(String libraryName,String libraryAddress) {
+        this.libraryName = libraryName;
+        this.libraryAddress = libraryAddress;
         this.books = new HashMap<>();
         this.patrons = new HashMap<>();
+    }
+
+    public String getLibraryAddress() {
+        return libraryAddress;
+    }
+
+    public void setLibraryAddress(String libraryAddress) {
+        this.libraryAddress = libraryAddress;
+    }
+
+    public String getLibraryName() {
+        return libraryName;
+    }
+
+    public void setLibraryName(String libraryName) {
+        this.libraryName = libraryName;
     }
 
     public Map<String, Book> getBooks() {
@@ -130,17 +152,18 @@ public class LibraryManagement implements Library {
 
         List<String> availableBooks = new ArrayList<>();
         for (Book book : books.values()) {
-            availableBooks.add(book.getNameOfBook());
+            if(book.isBookAvailable()){
+                availableBooks.add(book.getNameOfBook());
+            }
+
         }
         return availableBooks;
     }
 
     @Override
-    public List<Book> getBorrowedBooks() {
+    public List<Book> getBorrowedBooks(Patron patrons) {
 
-        return books.values().stream()
-                .filter(Book::isBookAvailable)
-                .collect(Collectors.toList());
+        return patrons.getBooks();
     }
 
 

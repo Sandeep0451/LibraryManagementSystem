@@ -11,7 +11,7 @@ import org.example.patron.Patron;
 public class Main {
     public static void main(String[] args) {
 
-        Library library = new LibraryManagement();
+        Library library = new LibraryManagement("MyLibrary","At Hyderabad");
 
         Book book1 = new Book("AuthorOne", "BookOne", "2011", "11211");
         Book book2 = new Book("AuthorTwo", "BookTwo", "2002", "22522");
@@ -86,19 +86,24 @@ public class Main {
         library.checkOutBook("11225","PAT007");
         library.checkOutBook("11215","PAT007");
 
-        System.out.println(library.getAvailableBooks());
+        System.out.println("List of books borrowed by :"+library.getBorrowedBooks(patron7));
+
+        System.out.println("List of available books are "+library.getAvailableBooks());
 
         library.checkInBook("11211","PAT002");
         library.checkInBook("11225","PAT007");
         library.checkInBook("11215","PAT007");
 
-        System.out.println(library.getAvailableBooks());
+        System.out.println("List of available books are"+library.getAvailableBooks());
 
-        System.out.println(library.searchByAuthor("AuthorTen"));
-        System.out.println(library.searchByAuthor("AuthorFifteen"));
+        System.out.println("Book by Author name :"+library.searchByAuthor("AuthorTen"));
+        System.out.println("Book by Author name :"+library.searchByAuthor("AuthorFifteen"));
 
-        System.out.println(library.searchByISBN("11222"));
-        System.out.println(library.searchByISBN("11223"));
+        System.out.println("Book by ISBN :"+library.searchByISBN("11222"));
+        System.out.println("Book by ISBN :"+library.searchByISBN("11223"));
+
+        System.out.println("Book by title :"+library.searchByTitle("BookSix"));
+        System.out.println("Book by title :"+library.searchByTitle("BookSeven"));
 
     }
 }

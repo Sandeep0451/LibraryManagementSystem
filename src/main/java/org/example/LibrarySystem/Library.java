@@ -22,6 +22,6 @@ public interface Library {
     Book searchByISBN(String isbn);
 
     List<String> getAvailableBooks();
-    List<Book> getBorrowedBooks();
+    List<Book> getBorrowedBooks(Patron patrons);
 
 }

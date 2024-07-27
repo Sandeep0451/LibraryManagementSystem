@@ -130,17 +130,18 @@ public class LibraryManagement implements Library {
 
         List<String> availableBooks = new ArrayList<>();
         for (Book book : books.values()) {
-            availableBooks.add(book.getNameOfBook());
+            if(book.isBookAvailable()){
+                availableBooks.add(book.getNameOfBook());
+            }
+
         }
         return availableBooks;
     }
 
     @Override
-    public List<Book> getBorrowedBooks() {
+    public List<Book> getBorrowedBooks(Patron patrons) {
 
-        return books.values().stream()
-                .filter(Book::isBookAvailable)
-                .collect(Collectors.toList());
+        return patrons.getBooks();
     }
 
 

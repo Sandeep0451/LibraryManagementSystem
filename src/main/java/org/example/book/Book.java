@@ -11,7 +11,7 @@ public class Book {
     private boolean isBookAvailable ;
 
 
-    public Book(String nameOfBook, String author, String yearOfPublish, String ISBN) {
+    public Book(String author, String nameOfBook, String yearOfPublish, String ISBN) {
         this.author = author;
         this.nameOfBook = nameOfBook;
         this.yearOfPublish = yearOfPublish;

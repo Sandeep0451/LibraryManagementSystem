@@ -109,9 +109,14 @@ public class LibraryManagement implements Library {
     @Override
     public List<Book> searchByAuthor(String author) {
 
-        return  books.values().stream()
-                .filter(book -> book.getAuthor().toLowerCase().contains(author.toLowerCase()))
-                .collect(Collectors.toList());
+        List<Book> authorBooks = new ArrayList<>();
+        for (Book book : books.values()) {
+            if (book.getAuthor().equalsIgnoreCase(author)) {
+                authorBooks.add(book);
+                return authorBooks;
+            }
+        }
+        return null;
     }
 
     @Override

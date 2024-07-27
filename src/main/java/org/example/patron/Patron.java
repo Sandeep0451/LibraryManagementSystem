@@ -6,17 +6,14 @@ import java.util.List;
 
 public class Patron {
 
-    String name;
-    String libraryId;
-    String email;
-    String location;
-    List<Book> books;
+    private String name;
+    private String patronId;
+    private List<Book> books;
 
-    public Patron(String name, String libraryId, String email, String location, List<Book> books) {
+    public Patron(String name, String libraryId,  List<Book> books) {
         this.name = name;
-        this.libraryId = libraryId;
-        this.email = email;
-        this.location = location;
+        this.patronId = libraryId;
+
         this.books = books;
     }
 
@@ -28,29 +25,14 @@ public class Patron {
         this.name = name;
     }
 
-    public String getLibraryId() {
-        return libraryId;
+    public String getPatronId() {
+        return patronId;
     }
 
-    public void setLibraryId(String libraryId) {
-        this.libraryId = libraryId;
+    public void setPatronId(String patronId) {
+        this.patronId = patronId;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
 
     public List<Book> getBooks() {
         return books;
@@ -58,5 +40,28 @@ public class Patron {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    public void borrowBook(Book book){
+        if(book!=null && book.isBookAvailable()){
+            books.add(book);
+            book.setBookAvailable(false);
+        }
+    }
+
+    public void returnBook(Book book){
+        if(book!=null && !book.isBookAvailable()){
+           books.remove(book);
+           book.setBookAvailable(true);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Patron{" +
+                "name='" + name + '\'' +
+                ", id='" + patronId + '\'' +
+                ", borrowedBooks=" + books +
+                '}';
     }
 }

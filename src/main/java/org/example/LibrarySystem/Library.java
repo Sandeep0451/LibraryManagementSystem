@@ -15,7 +15,7 @@ public interface Library {
     void updatePatron(Patron patron);
 
     boolean checkInBook(String isbn,String patronId);
-    boolean checkOutBook(String isbn,String patronId);
+    void checkOutBook(String isbn, String patronId);
 
     List<Book> searchByTitle(String title);
     List<Book> searchByAuthor(String author);

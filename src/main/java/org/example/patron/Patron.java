@@ -2,6 +2,7 @@ package org.example.patron;
 
 import org.example.book.Book;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Patron {
@@ -10,11 +11,11 @@ public class Patron {
     private String patronId;
     private List<Book> books;
 
-    public Patron(String name, String libraryId,  List<Book> books) {
+    public Patron(String name, String libraryId) {
         this.name = name;
         this.patronId = libraryId;
 
-        this.books = books;
+        this.books = new ArrayList<>();
     }
 
     public String getName() {
@@ -46,6 +47,7 @@ public class Patron {
         if(book!=null && book.isBookAvailable()){
             books.add(book);
             book.setBookAvailable(false);
+
         }
     }
 
